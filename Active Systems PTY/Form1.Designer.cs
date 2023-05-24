@@ -65,13 +65,14 @@
             // 
             // btnAdd
             // 
+            btnAdd.Enabled = false;
             btnAdd.Location = new Point(12, 79);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnNew_Click;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnEdit
             // 
@@ -110,6 +111,7 @@
             btnOpenFile.TabIndex = 5;
             btnOpenFile.Text = "Open";
             btnOpenFile.UseVisualStyleBackColor = true;
+            btnOpenFile.Click += btnOpenFile_Click;
             // 
             // btnSaveFile
             // 
@@ -127,7 +129,8 @@
             txtAdd.PlaceholderText = "Rego to Add";
             txtAdd.Size = new Size(94, 27);
             txtAdd.TabIndex = 7;
-            txtAdd.Enter += btnNew_Click;
+            txtAdd.TextChanged += txtAdd_TextChanged;
+            txtAdd.KeyPress += txtAdd_KeyPress;
             // 
             // btnReset
             // 
