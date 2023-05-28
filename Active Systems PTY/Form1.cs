@@ -54,7 +54,10 @@ namespace Active_Systems_PTY
 
                 foreach (string Rego in RegoList)
                 {
-                    listRegos.Items.Add(Rego);
+                    if (listRegos.FindItemWithText(Rego) == null)
+                    {
+                        listRegos.Items.Add(Rego);
+                    }
                 }
             }
         }
