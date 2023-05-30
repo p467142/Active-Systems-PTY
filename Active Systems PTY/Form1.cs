@@ -22,30 +22,40 @@ namespace Active_Systems_PTY
             { btnAdd.Enabled = false; }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            AddRego();
-        }
+        private void btnAdd_Click(object sender, EventArgs e) { AddRego(); }
+
+        private void btnEdit_Click(object sender, EventArgs e) { EditRego(); }
 
         private void txtAdd_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                AddRego();
+                if (btnEdit.Enabled)
+                { EditRego(); }
+                else
+                { AddRego(); }
             }
         }
 
         private void AddRego()
         {
+            // check for dups
             if (listRegos.Items.Count == 0 || listRegos.FindItemWithText(txtAdd.Text, true, 0, false) == null)
             {
                 listRegos.Items.Add(txtAdd.Text);
                 txtAdd.Text = null;
             }
         }
+        private void EditRego()
+        {
+            listRegos.SelectedItems[0].Text = txtAdd.Text;
+            txtAdd.Text = null;
+            listRegos.SelectedItems.Clear();
+        }
+
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-            // if data is already there, prompt to save, save and refresh before adding data, or add data without saving
+            //TODO: if data is already there, prompt to save, save and refresh before adding data, or add data without saving
             OpenFileDialog openDataFile = new OpenFileDialog();
 
             if (openDataFile.ShowDialog() == DialogResult.OK)
@@ -88,6 +98,8 @@ namespace Active_Systems_PTY
             {
                 btnEdit.Enabled = true;
                 btnDelete.Enabled = true;
+
+                txtAdd.Text = listRegos.SelectedItems[0].Text;
             }
         }
 
@@ -98,6 +110,12 @@ namespace Active_Systems_PTY
                 listRegos.Items.Remove(Rego);
             }
             txtAdd.Text = "";
+            txtAdd.Focus();
+        }
+
+        private void listRegos_Click(object sender, EventArgs e)
+        {
+            btnEdit.Focus();
             txtAdd.Focus();
         }
     }

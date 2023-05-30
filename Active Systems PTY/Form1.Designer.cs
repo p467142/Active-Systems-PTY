@@ -52,6 +52,8 @@
             listRegos.TabIndex = 0;
             listRegos.UseCompatibleStateImageBehavior = false;
             listRegos.View = View.Details;
+            listRegos.SelectedIndexChanged += listRegos_SelectedIndexChanged;
+            listRegos.Click += listRegos_Click;
             listRegos.DoubleClick += listRegos_DoubleClick;
             // 
             // columnHeader1
@@ -84,6 +86,7 @@
             btnEdit.TabIndex = 2;
             btnEdit.Text = "Edit";
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnDelete
             // 
