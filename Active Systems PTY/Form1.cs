@@ -46,6 +46,7 @@ namespace Active_Systems_PTY
         }
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
+            // if data is already there, prompt to save, save and refresh before adding data, or add data without saving
             OpenFileDialog openDataFile = new OpenFileDialog();
 
             if (openDataFile.ShowDialog() == DialogResult.OK)
@@ -62,5 +63,19 @@ namespace Active_Systems_PTY
             }
         }
 
+        private void listRegos_DoubleClick(object sender, EventArgs e)
+        {
+            DeleteRegoDialog deleteRegos = new DeleteRegoDialog();
+
+            deleteRegos.setDeleteRegoList(listRegos.SelectedItems);
+
+            if (deleteRegos.ShowDialog() == DialogResult.OK)
+            {
+                foreach (ListViewItem Rego in listRegos.SelectedItems)
+                {
+                    listRegos.Items.Remove(Rego);
+                }
+            }
+        }
     }
 }

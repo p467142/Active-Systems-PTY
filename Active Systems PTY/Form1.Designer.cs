@@ -52,11 +52,12 @@
             listRegos.TabIndex = 0;
             listRegos.UseCompatibleStateImageBehavior = false;
             listRegos.View = View.Details;
+            listRegos.DoubleClick += listRegos_DoubleClick;
             // 
             // columnHeader1
             // 
             columnHeader1.Text = "Rego";
-            columnHeader1.Width = 80;
+            columnHeader1.Width = 100;
             // 
             // columnHeader2
             // 
