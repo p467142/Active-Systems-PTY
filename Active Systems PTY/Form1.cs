@@ -37,8 +37,7 @@ namespace Active_Systems_PTY
 
         private void AddRego()
         {
-            // TODO: test for dups
-            if (listRegos.FindItemWithText(txtAdd.Text) == null)
+            if (listRegos.Items.Count == 0 || listRegos.FindItemWithText(txtAdd.Text, true, 0, false) == null)
             {
                 listRegos.Items.Add(txtAdd.Text);
                 txtAdd.Text = null;
