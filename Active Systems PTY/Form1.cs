@@ -77,5 +77,29 @@ namespace Active_Systems_PTY
                 }
             }
         }
+
+        private void listRegos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listRegos.SelectedItems.Count == 0)
+            {
+                btnEdit.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+            else
+            {
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem Rego in listRegos.SelectedItems)
+            {
+                listRegos.Items.Remove(Rego);
+            }
+            txtAdd.Text = "";
+            txtAdd.Focus();
+        }
     }
 }
