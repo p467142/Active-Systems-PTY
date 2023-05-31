@@ -118,5 +118,10 @@ namespace Active_Systems_PTY
             btnEdit.Focus();
             txtAdd.Focus();
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            listRegos.Items.Clear();
+        }
     }
 }
