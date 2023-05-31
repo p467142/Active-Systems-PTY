@@ -39,11 +39,15 @@ namespace Active_Systems_PTY
 
         private void AddRego()
         {
+            AddRego(txtAdd.Text);
+            txtAdd.Text = null;
+        }
+        private void AddRego(string rego)
+        {
             // check for dups
             if (listRegos.Items.Count == 0 || listRegos.FindItemWithText(txtAdd.Text, true, 0, false) == null)
             {
-                listRegos.Items.Add(txtAdd.Text);
-                txtAdd.Text = null;
+                listRegos.Items.Add(rego);
             }
         }
         private void EditRego()
@@ -64,10 +68,7 @@ namespace Active_Systems_PTY
 
                 foreach (string Rego in RegoList)
                 {
-                    if (listRegos.FindItemWithText(Rego) == null)
-                    {
-                        listRegos.Items.Add(Rego);
-                    }
+                    AddRego(Rego);
                 }
             }
         }
