@@ -1,6 +1,3 @@
-using System.Security;
-using System.Windows.Forms;
-
 namespace Active_Systems_PTY
 {
     public partial class Form1 : Form
@@ -13,6 +10,15 @@ namespace Active_Systems_PTY
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private static List<string> Regos = new List<string>();
+        private void refreshRegosView()
+        {
+            listRegos.Items.Clear();
+            foreach (string rego in Regos)
+            { listRegos.Items.Add(rego); }
+            refreshRegoButtons();
         }
         private void txtAdd_TextChanged(object sender, EventArgs e)
         {
@@ -39,22 +45,33 @@ namespace Active_Systems_PTY
 
         private void AddRego()
         {
-            AddRego(txtAdd.Text);
-            txtAdd.Text = null;
+            if (AddRego(txtAdd.Text))
+            { txtAdd.Text = null; }
         }
-        private void AddRego(string rego)
+        private bool AddRego(string rego)
         {
-            // check for dups
-            if (listRegos.Items.Count == 0 || listRegos.FindItemWithText(txtAdd.Text, true, 0, false) == null)
+            // return true if added, false if already there
+            if (!Regos.Contains(rego))
             {
-                listRegos.Items.Add(rego);
+                Regos.Add(rego);
+                Regos.Sort();
+                refreshRegosView();
+                return true;
             }
+            else { return false; }
         }
         private void EditRego()
         {
-            listRegos.SelectedItems[0].Text = txtAdd.Text;
+            Regos[listRegos.SelectedItems[0].Index] = txtAdd.Text;
             txtAdd.Text = null;
+            Regos.Sort();
+            refreshRegosView();
             listRegos.SelectedItems.Clear();
+        }
+        private void RemoveRego(string rego)
+        {
+            Regos.Remove(rego);
+            refreshRegosView();
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -83,12 +100,17 @@ namespace Active_Systems_PTY
             {
                 foreach (ListViewItem Rego in listRegos.SelectedItems)
                 {
-                    listRegos.Items.Remove(Rego);
+                    RemoveRego(Rego.Text);
                 }
             }
         }
 
         private void listRegos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refreshRegoButtons();
+        }
+
+        private void refreshRegoButtons()
         {
             if (listRegos.SelectedItems.Count == 0)
             {
@@ -108,7 +130,7 @@ namespace Active_Systems_PTY
         {
             foreach (ListViewItem Rego in listRegos.SelectedItems)
             {
-                listRegos.Items.Remove(Rego);
+                RemoveRego(Rego.Text);
             }
             txtAdd.Text = "";
             txtAdd.Focus();
@@ -122,7 +144,8 @@ namespace Active_Systems_PTY
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            listRegos.Items.Clear();
+            Regos.Clear();
+            refreshRegosView();
         }
     }
 }
