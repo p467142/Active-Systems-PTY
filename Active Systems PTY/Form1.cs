@@ -2,6 +2,7 @@ namespace Active_Systems_PTY
 {
     public partial class Form1 : Form
     {
+        #region boilerplate
         public Form1()
         {
             InitializeComponent();
@@ -11,6 +12,7 @@ namespace Active_Systems_PTY
         {
 
         }
+        #endregion boilerplate
 
         private static List<string> Regos = new List<string>();
         private void refreshRegosView()
