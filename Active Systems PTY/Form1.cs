@@ -10,7 +10,7 @@ namespace Active_Systems_PTY
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            radioBtnSearchBinary.Checked = true;
         }
         #endregion boilerplate
 
@@ -148,6 +148,59 @@ namespace Active_Systems_PTY
         {
             Regos.Clear();
             refreshRegosView();
+        }
+
+        private static bool SearchBinary = true; // binary btn is set in Form1_Load()
+        private void radioBtnSearchBinary_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!radioBtnSearchBinary.Checked) { SearchBinary = true; }
+            else { SearchBinary = false; }
+        }
+
+        private void radioBtnSearchLinear_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!radioBtnSearchLinear.Checked) { SearchBinary = false; }
+            else { SearchBinary = true; }
+        }
+
+        public void RegoBinarySearch()
+        {
+            listRegos.SelectedItems.Clear();
+            int i = Regos.BinarySearch(txtSearch.Text);
+            if (i > 0)
+            {
+                listRegos.Items[i].Selected = true;
+                txtOutput.Text = "Search found at index: " + i;
+                txtAdd.Focus();
+            } else { txtOutput.Text = "Search failed... returned " + i; }
+        }
+
+        public void RegoLinearSearch()
+        {
+            listRegos.SelectedItems.Clear();
+            foreach (string Rego in Regos) // linear search loop
+            {
+                if (txtSearch.Text == Rego)
+                {
+                    int i = Regos.IndexOf(Rego);
+                    listRegos.Items[i].Selected = true;
+                    txtOutput.Text = "Search found at index: " + i;
+                    txtAdd.Focus();
+                    break;
+                }
+            }
+            if (listRegos.SelectedItems == null) { txtOutput.Text = "Search failed..."; }
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (radioBtnSearchBinary.Checked)
+                { RegoBinarySearch(); }
+                if (radioBtnSearchLinear.Checked)
+                { RegoLinearSearch(); }
+            }
         }
     }
 }

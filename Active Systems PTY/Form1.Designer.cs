@@ -41,6 +41,13 @@
             btnReset = new Button();
             colorDialog1 = new ColorDialog();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            radioBtnSearchBinary = new RadioButton();
+            radioBtnSearchLinear = new RadioButton();
+            groupBoxSearchType = new GroupBox();
+            txtSearch = new TextBox();
+            labelSearch = new Label();
+            txtOutput = new TextBox();
+            groupBoxSearchType.SuspendLayout();
             SuspendLayout();
             // 
             // listRegos
@@ -147,11 +154,76 @@
             btnReset.UseVisualStyleBackColor = true;
             btnReset.Click += btnReset_Click;
             // 
+            // radioBtnSearchBinary
+            // 
+            radioBtnSearchBinary.AutoSize = true;
+            radioBtnSearchBinary.Location = new Point(6, 26);
+            radioBtnSearchBinary.Name = "radioBtnSearchBinary";
+            radioBtnSearchBinary.Size = new Size(71, 24);
+            radioBtnSearchBinary.TabIndex = 10;
+            radioBtnSearchBinary.TabStop = true;
+            radioBtnSearchBinary.Text = "Binary";
+            radioBtnSearchBinary.UseVisualStyleBackColor = true;
+            radioBtnSearchBinary.CheckedChanged += radioBtnSearchBinary_CheckedChanged;
+            // 
+            // radioBtnSearchLinear
+            // 
+            radioBtnSearchLinear.AutoSize = true;
+            radioBtnSearchLinear.Location = new Point(6, 56);
+            radioBtnSearchLinear.Name = "radioBtnSearchLinear";
+            radioBtnSearchLinear.Size = new Size(70, 24);
+            radioBtnSearchLinear.TabIndex = 11;
+            radioBtnSearchLinear.TabStop = true;
+            radioBtnSearchLinear.Text = "Linear";
+            radioBtnSearchLinear.UseVisualStyleBackColor = true;
+            radioBtnSearchLinear.CheckedChanged += radioBtnSearchLinear_CheckedChanged;
+            // 
+            // groupBoxSearchType
+            // 
+            groupBoxSearchType.Controls.Add(radioBtnSearchLinear);
+            groupBoxSearchType.Controls.Add(radioBtnSearchBinary);
+            groupBoxSearchType.Location = new Point(12, 114);
+            groupBoxSearchType.Name = "groupBoxSearchType";
+            groupBoxSearchType.Size = new Size(115, 87);
+            groupBoxSearchType.TabIndex = 12;
+            groupBoxSearchType.TabStop = false;
+            groupBoxSearchType.Text = "Search Type";
+            // 
+            // txtSearch
+            // 
+            txtSearch.Location = new Point(12, 207);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(115, 27);
+            txtSearch.TabIndex = 12;
+            txtSearch.KeyPress += txtSearch_KeyPress;
+            // 
+            // labelSearch
+            // 
+            labelSearch.AutoSize = true;
+            labelSearch.Location = new Point(133, 210);
+            labelSearch.Name = "labelSearch";
+            labelSearch.Size = new Size(53, 20);
+            labelSearch.TabIndex = 13;
+            labelSearch.Text = "Search";
+            // 
+            // txtOutput
+            // 
+            txtOutput.Enabled = false;
+            txtOutput.Location = new Point(12, 341);
+            txtOutput.Name = "txtOutput";
+            txtOutput.PlaceholderText = "Output...";
+            txtOutput.Size = new Size(193, 27);
+            txtOutput.TabIndex = 14;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(557, 450);
+            Controls.Add(txtOutput);
+            Controls.Add(labelSearch);
+            Controls.Add(txtSearch);
+            Controls.Add(groupBoxSearchType);
             Controls.Add(btnReset);
             Controls.Add(txtAdd);
             Controls.Add(btnSaveFile);
@@ -164,6 +236,8 @@
             Name = "Form1";
             Text = "Active Systems PTY";
             Load += Form1_Load;
+            groupBoxSearchType.ResumeLayout(false);
+            groupBoxSearchType.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -183,5 +257,11 @@
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private RadioButton radioBtnSearchBinary;
+        private RadioButton radioBtnSearchLinear;
+        private GroupBox groupBoxSearchType;
+        private TextBox txtSearch;
+        private Label labelSearch;
+        private TextBox txtOutput;
     }
 }
