@@ -14,6 +14,25 @@ namespace Active_Systems_PTY
         private void Form1_Load(object sender, EventArgs e)
         {
             radioBtnSearchBinary.Checked = true;
+
+            ToolTip tooltip = new ToolTip();
+            tooltip.AutoPopDelay = 5000;
+            tooltip.InitialDelay = 1000;
+            tooltip.ReshowDelay = 500;
+            tooltip.ShowAlways = true;
+
+            tooltip.SetToolTip(this.btnAdd, "Adds rego to list");
+            tooltip.SetToolTip(this.btnEdit, "Replace selected rego with textbox");
+            tooltip.SetToolTip(this.btnDelete, "Remove all selected rego");
+            tooltip.SetToolTip(this.btnTag, "Tags untagged regos");
+
+            tooltip.SetToolTip(this.btnSaveFile, "Save regos to file");
+            tooltip.SetToolTip(this.btnOpenFile, "Open data file");
+            tooltip.SetToolTip(this.btnReset, "Remove all regos (no confirmation!)");
+
+            tooltip.SetToolTip(this.txtSearch, "Search for rego (must be exact match)");
+            tooltip.SetToolTip(this.radioBtnSearchBinary, "Use built-in BinarySearch function");
+            tooltip.SetToolTip(this.radioBtnSearchLinear, "Use custom Linear Search functionality");
         }
         #endregion boilerplate
 

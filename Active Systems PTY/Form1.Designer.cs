@@ -66,7 +66,7 @@
             // columnHeader1
             // 
             columnHeader1.Text = "Rego";
-            columnHeader1.Width = 1000;
+            columnHeader1.Width = 200;
             // 
             // btnAdd
             // 
