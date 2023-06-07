@@ -36,6 +36,14 @@ namespace Active_Systems_PTY
         private void btnAdd_Click(object sender, EventArgs e) { AddRego(); }
 
         private void btnEdit_Click(object sender, EventArgs e) { EditRego(); }
+        private void btnTag_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem Rego in listRegos.SelectedItems)
+            { TagRego(Rego.Text); }
+            txtAdd.Text = null;
+            Regos.Sort();
+            refreshRegosView();
+        }
 
         private void txtAdd_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -77,6 +85,24 @@ namespace Active_Systems_PTY
         {
             Regos.Remove(rego);
             refreshRegosView();
+        }
+
+        private void TagRego(string rego)
+        {
+            if (!Regex.Match(rego, @"^z").Success)
+            { Regos[Regos.IndexOf(rego)] = "z" + rego; }
+        }
+
+        private void UnTagRego(string rego)
+        {
+            if (Regex.Match(rego, @"^z").Success)
+            {
+                Regos[Regos.IndexOf(rego)] = Regos[Regos.IndexOf(rego)].Substring(1);
+                txtAdd.Text = null;
+                Regos.Sort();
+                refreshRegosView();
+                listRegos.SelectedItems.Clear();
+            }
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
@@ -140,6 +166,8 @@ namespace Active_Systems_PTY
 
         private void listRegos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listRegos.SelectedItems.Count != 0)
+            { UnTagRego(listRegos.SelectedItems[0].Text); }
             refreshRegoButtons();
         }
 
@@ -149,11 +177,13 @@ namespace Active_Systems_PTY
             {
                 btnEdit.Enabled = false;
                 btnDelete.Enabled = false;
+                btnTag.Enabled = false;
             }
             else
             {
                 btnEdit.Enabled = true;
                 btnDelete.Enabled = true;
+                btnTag.Enabled = true;
 
                 txtAdd.Text = listRegos.SelectedItems[0].Text;
             }

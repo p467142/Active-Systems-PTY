@@ -30,7 +30,6 @@
         {
             listRegos = new ListView();
             columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
             btnAdd = new Button();
             btnEdit = new Button();
             btnDelete = new Button();
@@ -47,12 +46,13 @@
             txtSearch = new TextBox();
             labelSearch = new Label();
             txtOutput = new TextBox();
+            btnTag = new Button();
             groupBoxSearchType.SuspendLayout();
             SuspendLayout();
             // 
             // listRegos
             // 
-            listRegos.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+            listRegos.Columns.AddRange(new ColumnHeader[] { columnHeader1 });
             listRegos.Location = new Point(214, 12);
             listRegos.Name = "listRegos";
             listRegos.Size = new Size(331, 426);
@@ -66,12 +66,7 @@
             // columnHeader1
             // 
             columnHeader1.Text = "Rego";
-            columnHeader1.Width = 100;
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "Tag";
-            columnHeader2.Width = 35;
+            columnHeader1.Width = 1000;
             // 
             // btnAdd
             // 
@@ -216,11 +211,23 @@
             txtOutput.Size = new Size(193, 27);
             txtOutput.TabIndex = 14;
             // 
+            // btnTag
+            // 
+            btnTag.Enabled = false;
+            btnTag.Location = new Point(133, 114);
+            btnTag.Name = "btnTag";
+            btnTag.Size = new Size(75, 29);
+            btnTag.TabIndex = 15;
+            btnTag.Text = "Tag";
+            btnTag.UseVisualStyleBackColor = true;
+            btnTag.Click += btnTag_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(557, 450);
+            Controls.Add(btnTag);
             Controls.Add(txtOutput);
             Controls.Add(labelSearch);
             Controls.Add(txtSearch);
@@ -256,7 +263,6 @@
         private Button btnReset;
         private ColorDialog colorDialog1;
         private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private RadioButton radioBtnSearchBinary;
         private RadioButton radioBtnSearchLinear;
@@ -264,5 +270,6 @@
         private TextBox txtSearch;
         private Label labelSearch;
         private TextBox txtOutput;
+        private Button btnTag;
     }
 }
