@@ -133,6 +133,7 @@
             btnSaveFile.TabIndex = 6;
             btnSaveFile.Text = "Save";
             btnSaveFile.UseVisualStyleBackColor = true;
+            btnSaveFile.Click += btnSaveFile_Click;
             // 
             // txtAdd
             // 

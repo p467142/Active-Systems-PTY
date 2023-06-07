@@ -1,3 +1,6 @@
+using System.Text;
+using System.Text.RegularExpressions;
+
 namespace Active_Systems_PTY
 {
     public partial class Form1 : Form
@@ -88,6 +91,34 @@ namespace Active_Systems_PTY
                 foreach (string Rego in RegoList)
                 {
                     AddRego(Rego);
+                }
+            }
+        }
+
+        private void btnSaveFile_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDataFile = new SaveFileDialog();
+            saveDataFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+
+            string savePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveDataFile.InitialDirectory = savePath;
+
+            string defaultFileName = "data0.txt";
+            while (File.Exists(Path.Combine(savePath, defaultFileName)))
+            { // increment the default data file name
+                defaultFileName =
+                    "data" +
+                    (Int32.Parse(Regex.Match(defaultFileName, @"\d+").Value) + 1) +
+                    ".txt";
+            }
+            saveDataFile.FileName = defaultFileName;
+
+            if (saveDataFile.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter dataStream = new StreamWriter(saveDataFile.FileName))
+                {
+                    foreach (string Rego in Regos)
+                    { dataStream.WriteLine(Rego); }
                 }
             }
         }
