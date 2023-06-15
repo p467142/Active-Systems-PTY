@@ -269,7 +269,7 @@ namespace Active_Systems_PTY
                     break;
                 }
             }
-            if (listRegos.SelectedItems == null) { txtOutput.Text = "Search failed..."; }
+            if (listRegos.SelectedItems.Count == 0) { txtOutput.Text = "Search failed..."; }
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
