@@ -247,7 +247,7 @@ namespace Active_Systems_PTY
         {
             listRegos.SelectedItems.Clear();
             int i = Regos.BinarySearch(txtSearch.Text);
-            if (i > 0)
+            if (i >= 0)
             {
                 listRegos.Items[i].Selected = true;
                 txtOutput.Text = "Search found at index: " + i;
