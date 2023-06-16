@@ -129,6 +129,8 @@ namespace Active_Systems_PTY
             //TODO: if data is already there, prompt to save, save and refresh before adding data, or add data without saving
             OpenFileDialog openDataFile = new OpenFileDialog();
 
+            openDataFile.InitialDirectory = Application.StartupPath;
+
             if (openDataFile.ShowDialog() == DialogResult.OK)
             {
                 List<string> RegoList = File.ReadAllLines(openDataFile.FileName).ToList();
@@ -145,7 +147,7 @@ namespace Active_Systems_PTY
             SaveFileDialog saveDataFile = new SaveFileDialog();
             saveDataFile.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
 
-            string savePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string savePath = Application.StartupPath;
             saveDataFile.InitialDirectory = savePath;
 
             string defaultFileName = "data0.txt";
